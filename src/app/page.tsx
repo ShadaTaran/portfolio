@@ -2,11 +2,13 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Hero } from "@/components/hero";
+import { SelectedWork } from "@/components/selected-work";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <SelectedWork />
       <Section id="about">
         <Container>
           <SectionHeading as="h2" title="About" />

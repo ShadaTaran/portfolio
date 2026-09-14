@@ -26,10 +26,10 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
-              href="#about"
+              href="#projects"
               className="inline-flex items-center justify-center rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:opacity-90"
             >
-              About me
+              View my work
             </a>
             <a
               href={GITHUB_URL}
