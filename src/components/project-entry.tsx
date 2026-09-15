@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/types/project";
@@ -53,34 +54,39 @@ export function ProjectEntry({
           </p>
         ) : null}
 
-        {project.liveUrl || project.repositoryUrl ? (
-          <div className="flex flex-wrap gap-5 pt-1">
-            {project.liveUrl ? (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} — live site`}
-                className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
-              >
-                Live
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
-            ) : null}
-            {project.repositoryUrl ? (
-              <a
-                href={project.repositoryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} — GitHub repository`}
-                className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
-              >
-                GitHub
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
-            ) : null}
-          </div>
-        ) : null}
+        <div className="flex flex-wrap gap-5 pt-1">
+          <Link
+            href={`/projects/${project.slug}`}
+            aria-label={`${project.title} — case study`}
+            className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+          >
+            Case study
+          </Link>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} — live site`}
+              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+            >
+              Live
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          ) : null}
+          {project.repositoryUrl ? (
+            <a
+              href={project.repositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} — GitHub repository`}
+              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+            >
+              GitHub
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          ) : null}
+        </div>
       </div>
     </article>
   );

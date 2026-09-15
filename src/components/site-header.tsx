@@ -23,30 +23,30 @@ export function SiteHeader() {
               aria-label="Primary"
               className="hidden items-center gap-6 sm:flex"
             >
-              <a
-                href="#projects"
+              <Link
+                href="/#projects"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 Projects
-              </a>
-              <a
-                href="#experience"
+              </Link>
+              <Link
+                href="/#experience"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 Experience
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                href="/#about"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 About
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/#contact"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 Contact
-              </a>
+              </Link>
               <a
                 href={GITHUB_URL}
                 target="_blank"
