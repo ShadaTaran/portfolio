@@ -1,10 +1,8 @@
-export type ProjectCaseStudySections = {
-  overview?: string[];
-  challenge?: string[];
-  solution?: string[];
-  features?: string[];
-  technicalDecisions?: string[];
-  outcome?: string[];
+export type ProjectCaseStudySection = {
+  title: string;
+  items: string[];
+  variant?: "paragraphs" | "list";
+  narrow?: boolean;
 };
 
 export type ProjectCaseStudy = {
@@ -18,5 +16,5 @@ export type ProjectCaseStudy = {
   technologies: string[];
   liveUrl?: string;
   repositoryUrl?: string;
-  sections: ProjectCaseStudySections;
+  sections: ProjectCaseStudySection[];
 };
