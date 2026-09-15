@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { GITHUB_URL } from "@/lib/site";
+import { GITHUB_URL, RESUME_URL } from "@/lib/site";
 
 const links = [
   { label: "Projects", href: "/#projects" },
@@ -66,6 +66,17 @@ export function MobileNav() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Resume
+              </a>
+            </li>
             <li>
               <a
                 href={GITHUB_URL}

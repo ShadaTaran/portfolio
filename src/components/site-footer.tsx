@@ -1,5 +1,5 @@
 import { Container } from "@/components/layout/container";
-import { GITHUB_URL } from "@/lib/site";
+import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -20,6 +20,14 @@ export function SiteFooter() {
               className="transition-colors hover:text-foreground"
             >
               GitHub
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              LinkedIn
             </a>
             <a href="#top" className="transition-colors hover:text-foreground">
               Back to top
