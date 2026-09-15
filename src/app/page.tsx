@@ -3,12 +3,16 @@ import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Hero } from "@/components/hero";
 import { SelectedWork } from "@/components/selected-work";
+import { Experience } from "@/components/experience";
+import { Skills } from "@/components/skills";
+import { Contact } from "@/components/contact";
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <SelectedWork />
+      <Experience />
       <Section id="about">
         <Container>
           <SectionHeading as="h2" title="About" />
@@ -22,13 +26,11 @@ export default function Home() {
               problems—from business management systems and real-time
               tracking to personal productivity software.
             </p>
-            <p>
-              I work primarily with React, Next.js, TypeScript, JavaScript,
-              and full-stack web technologies.
-            </p>
           </div>
         </Container>
       </Section>
+      <Skills />
+      <Contact />
     </main>
   );
 }
