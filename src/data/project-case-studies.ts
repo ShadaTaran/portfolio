@@ -132,20 +132,58 @@ export const bouvetQueueingSystem: ProjectCaseStudy = {
     {
       title: "Overview",
       items: [
-        "A queue administration and operations system built during a software development internship, for managing queues, departments, and day-to-day administrative workflows.",
+        "Bouvet Queueing System is a queue administration platform built during a software development internship. The system already existed as an ongoing project when the internship began — the work centered on the frontend admin interface and its integration with an existing backend, rather than architecting the system from scratch.",
+        "Responsibilities centered on building and maintaining administrative screens — user management, department management, and queue purpose configuration — and making sure those screens correctly read from and wrote to an external REST API backed by Microsoft SQL Server.",
       ],
     },
     {
-      title: "Key Features",
+      title: "Contributing to an existing administration system",
       items: [
-        "Authentication and access to administrative screens.",
-        "User and department management, including purpose assignment.",
-        "Queue and display configuration.",
-        "Search, pagination, and form validation across administrative screens.",
-        "REST API integration through a Backend-for-Frontend architecture backed by Microsoft SQL Server.",
+        "The project was already underway internally, with its own backend, data model, and API conventions already in place. Working inside that context meant matching existing patterns — request shapes, response handling, and UI conventions the rest of the codebase already used — rather than making independent architectural decisions.",
+        "That constraint shaped the work: most tasks involved extending or correcting behavior within an existing Next.js App Router structure, using the stack the project had already settled on — Next.js, React, TypeScript, Tailwind CSS, and shadcn/ui for the interface layer.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Building management workflows",
+      items: [
+        "Administrative work centered on a handful of representative modules: user accounts, departments, and queue purpose assignment. Each followed a similar shape — a paginated, searchable list view, with add/edit dialogs backed by form validation before any request reached the API.",
+        "User management combined a paginated list with debounced search, add/edit dialogs, and status/role handling, with each edit ultimately resolving to a PATCH request against the upstream API. Purpose assignment applied the same pattern to a more relational structure: assigning a queue purpose to a caller meant reconciling identifiers for guest type, department, and staff member into the shape the API actually expected, rather than the shape most convenient for the form.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Integrating through a Backend-for-Frontend",
+      items: [
+        "The frontend never called the external REST API directly. Every request went through a Backend-for-Frontend layer implemented as Next.js API routes, sitting between the browser and the MSSQL-backed upstream service. A login request, for example, posted to the app's own /api/auth/login-admin route, which in turn called the upstream /auth/login-admin endpoint and received back a username, role, and token.",
+        "Browser-facing requests were routed through these Next.js API routes before reaching the upstream REST API. That BFF layer handled the parts of the request/response cycle that don't belong in browser code: storing the returned token in an HttpOnly cookie rather than exposing it to client-side JavaScript, and exposing a separate, readable cookie carrying only the non-sensitive identity information the UI needed to render correctly.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Keeping UI state aligned with API contracts",
+      items: [
+        "Because the API was already defined by an existing backend, much of the integration work was about mapping — making sure form state, list state, and the payloads the API expected stayed in sync. Forms used react-hook-form with zod validation, so invalid input was caught before a request was even built, not just handled as a server error afterward.",
+        "That mapping work mattered more than it might first appear: the API's own field names and structures didn't always line up neatly with how a form modeled the same data, so a meaningful part of the work was translating between the two consistently in both directions — building a valid request payload, and correctly interpreting whatever the API sent back.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Debugging integration issues",
+      items: [
+        "Login responses weren't always shaped the way the client expected — a fallback path was needed so a malformed or unexpected JSON body from the upstream login endpoint didn't crash the login flow outright, and instead surfaced a clear error to the user.",
+        "Invalid credentials initially produced a generic failure message; distinguishing that case from other request failures meant reading the upstream error response specifically, so a wrong username or password produced an actual, specific message instead of a blanket error.",
+        "The user list could render empty on initial load, which required the client to handle the API's initial response state correctly before deciding that no user records were available.",
       ],
       variant: "list",
       narrow: false,
+    },
+    {
+      title: "Current state",
+      items: [
+        "By the end of the internship, the admin application supported authenticated access, user and department management, queue purpose assignment, and queue/display configuration, all integrated against the existing MSSQL-backed REST API through the BFF layer described above.",
+        "Working against an already-defined REST API made response contracts, payload mapping, and error states matter as much as the interface itself — validating and shaping data correctly before and after each request was as much a part of the job as building the screens that triggered it.",
+      ],
     },
   ],
 };
@@ -160,7 +198,7 @@ export const mansarTruckingSystem: ProjectCaseStudy = {
   role: "Software Developer / Capstone Developer",
   context: "Capstone Project",
   technologies: [
-    "React Native",
+    "React Native CLI",
     "PHP",
     "MySQL",
     "Firebase Realtime Database",
@@ -170,19 +208,64 @@ export const mansarTruckingSystem: ProjectCaseStudy = {
     {
       title: "Overview",
       items: [
-        "A mobile and web fleet-management system built as a capstone project, for coordinating drivers, trips, maintenance, and expenses.",
+        "Mansar Trucking Management System is a mobile and web system built as a capstone project around a real trucking business's own operations — coordinating drivers, trips, maintenance, and expenses, with GPS-based location tracking connecting the two ends.",
+        "The system pairs a React Native mobile app for drivers with a PHP/MySQL web backend and admin dashboard, using Firebase Realtime Database as a separate channel for current location state.",
       ],
     },
     {
-      title: "Key Features",
+      title: "Modeling the trucking workflow",
       items: [
-        "Driver and trip management.",
-        "Maintenance and expense tracking.",
-        "Mobile GPS-based location tracking for drivers.",
-        "A web dashboard displaying live location updates alongside trip and fleet data.",
+        "The system followed an existing business process rather than a generic CRUD dashboard invented for the project: an admin issues a trip ticket, a driver carries it out, receipts and records come back once the trip is complete, and the admin encodes that into a trip report. The software was built to support each of those steps, not to redesign the underlying workflow.",
+        "Driver, trip, maintenance, and expense records were managed through the same relational business-data layer, keeping the operational records in one structured backend rather than splitting each workflow into a separate system.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "From dedicated GPS hardware to mobile GPS",
+      items: [
+        "The project's location-tracking approach changed over its development. An earlier direction explored a dedicated IoT/GPS hardware unit carried in the vehicle, rather than relying on the driver's phone. That approach was set aside — not because it failed outright, but because building and maintaining a reliable custom hardware stack was outside the project's practical scope and the team's hardware expertise.",
+        "The final direction used the driver's own mobile device for location instead: a React Native app publishing GPS-based location data to the cloud. That traded a more specialized, hardware-dependent design for one the team could actually implement and test reliably within the project's scope — a smaller, more practical system rather than a more impressive one on paper.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Splitting business data from location data",
+      items: [
+        "Business-domain data — drivers, trips, maintenance, and expenses — lives in MySQL, structured and relational, which fits records that don't change from moment to moment. Current driver location is a different kind of data: it changes throughout a trip and mostly matters as a current snapshot, not as history. That went into Firebase Realtime Database instead, kept deliberately separate from the MySQL schema.",
+        "Keeping location state separate meant the dashboard could retrieve current driver-location data from Firebase for map display without treating those updates as ordinary relational trip records. The cost is that the application has to coordinate two separate datastores instead of one — a tradeoff made deliberately, not a consequence of lacking a single system that could do both.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Driver location tracking",
+      items: [
+        "The driver app publishes location periodically rather than continuously, along with when the driver was last active, so the admin side always has a recent — not necessarily instantaneous — picture of where a driver is. Location updates carry latitude and longitude, along with the general source the position came from (GPS versus a coarser cell/Wi-Fi-based estimate), giving the admin side some sense of how precise a given reading is likely to be. Location updates are also something the driver can toggle, rather than something that runs unconditionally in the background.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Admin operations and map",
+      items: [
+        "The admin side is a PHP/Bootstrap web dashboard, with a Leaflet map displaying driver-location data stored in Firebase. Alongside the map, the dashboard supports administrative workflows for issuing trip tickets and managing trip, maintenance, and expense records — the day-to-day administrative side of the system rather than a separate reporting layer.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Tradeoffs",
+      items: [
+        "Using the driver's own phone for GPS instead of dedicated hardware avoided a custom hardware stack the team would have had to build and maintain, at the cost of location tracking depending on the driver's phone and app actually being active.",
+        "Splitting business data into MySQL and location data into Firebase let each datastore handle the kind of data it's actually suited for, at the cost of the application needing to coordinate two separate systems instead of one.",
+        "Periodic rather than continuous location updates kept the tracking implementation simple and practical to build within the project's scope, at the cost of the map showing a recent position rather than a truly continuous trace.",
       ],
       variant: "list",
       narrow: false,
+    },
+    {
+      title: "Current state",
+      items: [
+        "The capstone implementation combined the mobile driver workflow, the business management backend, and the GPS-based admin dashboard into one working system, covering trip tickets, maintenance and expense records, and driver location tracking end to end.",
+        "The hardware-to-mobile shift was as much a part of the project as any single feature: the strongest architecture wasn't the most hardware-heavy one on paper, but the one the team could actually implement, test, and rely on within the project's real constraints.",
+      ],
     },
   ],
 };
