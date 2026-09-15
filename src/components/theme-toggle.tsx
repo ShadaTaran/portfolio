@@ -24,7 +24,7 @@ export function ThemeToggle() {
         type="button"
         aria-label="Toggle theme"
         disabled
-        className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground"
+        className="flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground"
       />
     );
   }
@@ -36,7 +36,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+      className="flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
     >
       {isDark ? (
         <Sun className="h-4 w-4" aria-hidden="true" />

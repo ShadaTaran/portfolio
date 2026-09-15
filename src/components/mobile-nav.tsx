@@ -40,7 +40,7 @@ export function MobileNav() {
         aria-controls={panelId}
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((value) => !value)}
-        className="flex h-9 w-9 items-center justify-center rounded-md text-foreground transition-colors hover:bg-foreground/5"
+        className="flex h-10 w-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-foreground/5"
       >
         {open ? (
           <X className="h-5 w-5" aria-hidden="true" />
