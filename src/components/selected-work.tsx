@@ -6,15 +6,16 @@ import { projects } from "@/data/projects";
 
 export function SelectedWork() {
   return (
-    <Section id="projects">
-      <Container>
-        <SectionHeading as="h2" title="Selected Work" />
-        <div className="mt-10 flex flex-col">
+    <Section id="projects" className="bg-surface-secondary">
+      <Container width="wide">
+        <SectionHeading as="h2" title="selected work" />
+        <div className="mt-8 flex flex-col">
           {projects.map((project, index) => (
             <ProjectEntry
               key={project.slug}
               project={project}
               flagship={index === 0}
+              reverseMedia={index === 1}
               withDivider={index > 0}
             />
           ))}

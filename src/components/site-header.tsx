@@ -1,64 +1,51 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { MobileNav } from "@/components/mobile-nav";
-import { GITHUB_URL } from "@/lib/site";
+import { internalNavItems, externalNavItems } from "@/lib/nav-items";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  scrolled: boolean;
+  inert?: boolean;
+};
+
+const navLinkClassName =
+  "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground";
+
+export function SiteHeader({ scrolled, inert = false }: SiteHeaderProps) {
   return (
     <header
       id="top"
-      className="sticky top-0 z-40 border-b border-border bg-background"
+      data-scrolled={scrolled}
+      inert={inert}
+      className="sticky top-0 z-50 bg-background/75 backdrop-blur-md transition-[opacity,transform] duration-[var(--motion-base)] ease-[var(--ease-in)] sm:data-[scrolled=true]:pointer-events-none sm:data-[scrolled=true]:-translate-y-3 sm:data-[scrolled=true]:scale-[0.98] sm:data-[scrolled=true]:opacity-0"
     >
-      <Container className="relative">
-        <div className="flex h-16 items-center justify-between">
+      <Container>
+        <div className="flex h-14 items-center justify-between">
           <Link
             href="/"
             className="shrink-0 whitespace-nowrap text-sm font-semibold tracking-tight"
           >
             Charles Cahilig
           </Link>
-          <div className="flex items-center gap-2 sm:gap-6">
-            <nav
-              aria-label="Primary"
-              className="hidden items-center gap-6 sm:flex"
-            >
-              <Link
-                href="/#projects"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Projects
+          <nav aria-label="Primary" className="hidden items-center gap-6 sm:flex">
+            {internalNavItems.map((item) => (
+              <Link key={item.id} href={item.href} className={navLinkClassName}>
+                {item.label}
               </Link>
-              <Link
-                href="/#experience"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Experience
-              </Link>
-              <Link
-                href="/#about"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                About
-              </Link>
-              <Link
-                href="/#contact"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Contact
-              </Link>
+            ))}
+            {externalNavItems.map((item) => (
               <a
-                href={GITHUB_URL}
+                key={item.label}
+                href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className={navLinkClassName}
               >
-                GitHub
+                {item.label}
               </a>
-            </nav>
-            <ThemeToggle />
-            <MobileNav />
-          </div>
+            ))}
+            <ThemeToggle variant="header" />
+          </nav>
         </div>
       </Container>
     </header>

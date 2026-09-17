@@ -1,91 +1,142 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { ProjectVisual } from "@/components/project-visual/project-visual";
 import type { Project } from "@/types/project";
 
 type ProjectEntryProps = {
   project: Project;
   flagship?: boolean;
+  reverseMedia?: boolean;
   withDivider?: boolean;
 };
 
 export function ProjectEntry({
   project,
   flagship = false,
+  reverseMedia = false,
   withDivider = false,
 }: ProjectEntryProps) {
   return (
     <article
       className={cn(
-        "flex flex-col gap-4 py-10 sm:flex-row sm:gap-8 sm:py-12",
+        "group/visual",
+        flagship ? "py-14 sm:py-20" : "py-10 sm:py-14",
         withDivider && "border-t border-border"
       )}
     >
-      <span className="font-mono text-sm text-muted-foreground sm:w-10 sm:shrink-0">
-        {project.number}
-      </span>
-      <div className="flex flex-1 flex-col gap-4">
-        <div className="flex flex-col gap-1">
-          <h3
-            className={cn(
-              "font-semibold tracking-tight",
-              flagship ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
-            )}
-          >
-            {project.title}
-          </h3>
-          <p className="text-sm text-muted-foreground sm:text-base">
-            {project.subtitle}
-          </p>
-        </div>
-
-        <p
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-8 lg:items-start lg:gap-12",
+          // The grid template's two columns are physical positions, not
+          // "copy"/"media" — when reverseMedia flips which content sits in
+          // which position (via order-1/order-2 below), the column widths
+          // have to flip with it, or the intended copy/media ratio inverts.
+          flagship
+            ? reverseMedia
+              ? "lg:grid-cols-[16fr_9fr]"
+              : "lg:grid-cols-[9fr_16fr]"
+            : reverseMedia
+              ? "lg:grid-cols-[9fr_11fr]"
+              : "lg:grid-cols-[11fr_9fr]"
+        )}
+      >
+        <div
           className={cn(
-            "max-w-2xl text-muted-foreground",
-            flagship ? "text-base sm:text-lg" : "text-sm sm:text-base"
+            "flex flex-col gap-3",
+            reverseMedia ? "lg:order-2" : "lg:order-1"
           )}
         >
-          {project.summary}
-        </p>
+          <div className="flex items-baseline gap-3">
+            <span
+              className="font-pixel text-sm text-muted-foreground"
+              style={{ fontVariationSettings: '"ELSH" 1' }}
+            >
+              {project.number}
+            </span>
+            <h3
+              className={cn(
+                "font-semibold tracking-tight text-balance text-foreground/90 transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] group-hover/visual:text-foreground",
+                flagship
+                  ? "text-[1.75rem] sm:text-[2.5rem]"
+                  : "text-[1.1875rem] sm:text-[1.375rem]"
+              )}
+            >
+              {project.title}
+            </h3>
+          </div>
 
-        {project.technologies?.length ? (
-          <p className="text-xs text-muted-foreground sm:text-sm">
-            {project.technologies.join(" · ")}
-          </p>
-        ) : null}
+          <p className="text-sm text-muted-foreground">{project.subtitle}</p>
 
-        <div className="flex flex-wrap gap-5 pt-1">
-          <Link
-            href={`/projects/${project.slug}`}
-            aria-label={`${project.title} — case study`}
-            className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+          <p
+            className={cn(
+              "text-muted-foreground",
+              flagship ? "text-base sm:text-lg" : "text-sm sm:text-base"
+            )}
           >
-            Case study
-          </Link>
-          {project.liveUrl ? (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} — live site`}
-              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
-            >
-              Live
-              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
+            {project.summary}
+          </p>
+
+          {project.technologies?.length ? (
+            <p className="text-xs text-muted-foreground/80">
+              {project.technologies.join(" · ")}
+            </p>
           ) : null}
-          {project.repositoryUrl ? (
-            <a
-              href={project.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} — GitHub repository`}
-              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 pt-1 text-sm">
+            <Link
+              href={`/projects/${project.slug}`}
+              aria-label={`${project.title} — case study`}
+              className="group/link inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
-              GitHub
-              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
-          ) : null}
+              case study
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-[var(--motion-fast)] ease-[var(--ease-standard)] group-hover/link:translate-x-[3px]"
+              >
+                →
+              </span>
+            </Link>
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} — live site`}
+                className="group/link inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
+              >
+                live
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+            ) : null}
+            {project.repositoryUrl ? (
+              <a
+                href={project.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} — GitHub repository`}
+                className="group/link inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
+              >
+                github
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+            ) : null}
+          </div>
+        </div>
+
+        <div
+          className={cn(
+            "transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] group-hover/visual:-translate-y-0.5 group-hover/visual:scale-[1.01]",
+            reverseMedia ? "lg:order-1" : "lg:order-2"
+          )}
+        >
+          <ProjectVisual variant={project.slug} />
         </div>
       </div>
     </article>

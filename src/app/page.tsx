@@ -5,23 +5,24 @@ import { Hero } from "@/components/hero";
 import { SelectedWork } from "@/components/selected-work";
 import { Experience } from "@/components/experience";
 import { Skills } from "@/components/skills";
+import { GithubActivity } from "@/components/github-activity";
 import { Contact } from "@/components/contact";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <Hero />
       <SelectedWork />
       <Experience />
       <Section id="about">
         <Container>
-          <SectionHeading as="h2" title="About" />
-          <div className="mt-8 flex max-w-2xl flex-col gap-4 text-base text-muted-foreground sm:text-lg">
-            <p>
+          <SectionHeading as="h2" title="about" />
+          <div className="mt-8 grid gap-4 border-t border-border pt-8 text-muted-foreground lg:grid-cols-2 lg:gap-10">
+            <p className="text-[17px] sm:text-[19px]">
               I&apos;m a software developer and BS Information Technology
               graduate specializing in Software Development.
             </p>
-            <p>
+            <p className="text-base">
               I enjoy building applications that solve practical
               problems—from business management systems and real-time
               tracking to personal productivity software.
@@ -30,6 +31,7 @@ export default function Home() {
         </Container>
       </Section>
       <Skills />
+      <GithubActivity />
       <Contact />
     </main>
   );

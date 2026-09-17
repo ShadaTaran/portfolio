@@ -7,10 +7,12 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border">
       <Container>
-        <div className="flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 pt-10 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:justify-between">
           <div className="text-sm text-muted-foreground">
-            <p className="font-medium text-foreground">Charles Cahilig</p>
-            <p>Software Developer · {year}</p>
+            <span className="font-medium text-foreground">
+              Charles Cahilig
+            </span>
+            <span> · Software Developer · {year}</span>
           </div>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
             <a

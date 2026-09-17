@@ -4,7 +4,7 @@ import { Section } from "@/components/layout/section";
 
 export default function NotFound() {
   return (
-    <main>
+    <main id="main-content">
       <Section>
         <Container>
           <div className="flex flex-col gap-4">

@@ -1,7 +1,6 @@
 import { cn } from "@/lib/cn";
 
 type SectionHeadingProps = {
-  eyebrow?: string;
   title: string;
   description?: string;
   as?: "h1" | "h2" | "h3";
@@ -9,7 +8,6 @@ type SectionHeadingProps = {
 };
 
 export function SectionHeading({
-  eyebrow,
   title,
   description,
   as: Tag = "h2",
@@ -17,12 +15,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={cn("flex flex-col gap-3", className)}>
-      {eyebrow ? (
-        <span className="font-mono text-sm uppercase tracking-wider text-muted-foreground">
-          {eyebrow}
-        </span>
-      ) : null}
-      <Tag className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+      <Tag className="text-[1.375rem] font-semibold tracking-tight sm:text-[1.75rem]">
         {title}
       </Tag>
       {description ? (

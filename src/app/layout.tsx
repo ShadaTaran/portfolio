@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Geist_Pixel } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { AdaptiveNavigation } from "@/components/adaptive-navigation";
+import { SkipToContent } from "@/components/skip-to-content";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +13,13 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const geistPixel = Geist_Pixel({
+  variable: "--font-geist-pixel",
+  weight: "variable",
+  axes: ["ELSH"],
   subsets: ["latin"],
 });
 
@@ -26,11 +34,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      className={`${geistSans.variable} ${geistMono.variable} ${geistPixel.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
-          <SiteHeader />
+          <SkipToContent />
+          <AdaptiveNavigation />
           {children}
           <SiteFooter />
         </ThemeProvider>

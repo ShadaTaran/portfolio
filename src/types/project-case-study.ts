@@ -16,5 +16,6 @@ export type ProjectCaseStudy = {
   technologies: string[];
   liveUrl?: string;
   repositoryUrl?: string;
+  tldr?: string[];
   sections: ProjectCaseStudySection[];
 };

@@ -22,18 +22,18 @@ const skillGroups = [
 
 export function Skills() {
   return (
-    <Section id="skills">
-      <Container>
-        <SectionHeading as="h2" title="Skills" />
-        <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+    <Section id="skills" spacing="compact">
+      <Container width="wide">
+        <SectionHeading as="h2" title="stack" />
+        <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-7 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => (
-            <div key={group.category} className="flex flex-col gap-2">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            <div key={group.category} className="flex flex-col gap-1.5">
+              <span className="text-sm font-medium text-foreground">
                 {group.category}
-              </p>
-              <p className="text-sm text-foreground sm:text-base">
-                {group.items.join(" · ")}
-              </p>
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {group.items.join(", ")}
+              </span>
             </div>
           ))}
         </div>

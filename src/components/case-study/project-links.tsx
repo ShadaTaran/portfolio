@@ -9,22 +9,22 @@ export function ProjectLinks({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
   }
 
   return (
-    <Section spacing="compact">
+    <Section spacing="compact" className="border-t border-border">
       <Container>
         <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          Project Links
+          project links
         </h2>
-        <div className="mt-6 flex flex-wrap gap-5">
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {caseStudy.liveUrl ? (
             <a
               href={caseStudy.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${caseStudy.title} — live site`}
-              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground sm:text-base"
+              className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
-              Live
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              live
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           ) : null}
           {caseStudy.repositoryUrl ? (
@@ -33,10 +33,10 @@ export function ProjectLinks({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${caseStudy.title} — GitHub repository`}
-              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground sm:text-base"
+              className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
-              GitHub
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              github
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           ) : null}
         </div>

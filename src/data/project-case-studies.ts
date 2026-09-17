@@ -20,6 +20,13 @@ export const markly: ProjectCaseStudy = {
   ],
   liveUrl: "https://markly-lime.vercel.app",
   repositoryUrl: "https://github.com/ShadaTaran/markly",
+  tldr: [
+    "The work and where it's consumed are modeled separately — one LibraryItem can have several TrackingSources, so the same anime found through two sites doesn't become two duplicate entries.",
+    "Smart Auto-Link only links automatically on an exact title and type match with exactly one candidate; anything ambiguous is left unlinked rather than guessed.",
+    "A single \"Continue\" engine decides which source to resume from, only auto-selecting among several sources when their timestamps are genuinely comparable — otherwise it asks instead of guessing.",
+    "Duplicate merges and deletes are covered by a short undo window that compares an exact post-action snapshot and refuses if anything real has changed since.",
+    "AniList sync is read/import by default; writing changes back to a user's actual account requires explicitly opting in per connection.",
+  ],
   sections: [
     {
       title: "Overview",

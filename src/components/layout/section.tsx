@@ -13,7 +13,7 @@ export function Section({
   return (
     <section
       className={cn(
-        spacing === "compact" ? "py-12 sm:py-16" : "py-20 sm:py-28",
+        spacing === "compact" ? "py-10 sm:py-14" : "py-12 sm:py-20",
         className
       )}
       {...props}
