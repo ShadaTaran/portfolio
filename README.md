@@ -1,3 +1,8 @@
+Personal portfolio of Charles Cahilig, built with Next.js.
+
+- Live: https://portfolio-theta-indol-84.vercel.app
+- GitHub: https://github.com/ShadaTaran/portfolio
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
