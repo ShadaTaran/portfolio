@@ -66,7 +66,9 @@ export function ProjectEntry({
             </h3>
           </div>
 
-          <p className="text-sm text-muted-foreground">{project.subtitle}</p>
+          <p className="text-sm text-muted-foreground">
+            {project.subtitle} · {project.status}
+          </p>
 
           <p
             className={cn(

@@ -3,6 +3,8 @@ export type Project = {
   number: string;
   title: string;
   subtitle: string;
+  /** Plain-language availability, e.g. "Live beta" or "In development". */
+  status: string;
   summary: string;
   year?: number;
   role?: string;

@@ -27,9 +27,9 @@ export function CaseStudyPage({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
   }));
 
   // Only Markly's long-form case study earns the TOC + reading-column
-  // treatment (~10 sections); Bouvet/Mansar stay on the simpler stacked
-  // layout, per the explicit instruction not to add this unless it
-  // genuinely benefits a case study this long.
+  // treatment (~10 sections); Mansar stays on the simpler stacked layout,
+  // per the explicit instruction not to add this unless it genuinely
+  // benefits a case study this long.
   const hasToc = caseStudy.slug === "markly";
 
   return (

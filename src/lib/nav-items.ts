@@ -1,13 +1,12 @@
 import {
   BriefcaseBusiness,
-  FileText,
   FolderKanban,
   GitBranch,
   Mail,
   UserRound,
   type LucideIcon,
 } from "lucide-react";
-import { GITHUB_URL, RESUME_URL } from "@/lib/site";
+import { GITHUB_URL } from "@/lib/site";
 
 export type InternalNavItem = {
   type: "internal";
@@ -34,12 +33,5 @@ export const internalNavItems: InternalNavItem[] = [
 export const externalNavItems: ExternalNavItem[] = [
   { type: "external", label: "GitHub", href: GITHUB_URL, icon: GitBranch },
 ];
-
-export const resumeNavItem: ExternalNavItem = {
-  type: "external",
-  label: "Resume",
-  href: RESUME_URL,
-  icon: FileText,
-};
 
 export const activeSectionIds = internalNavItems.map((item) => item.id);

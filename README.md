@@ -1,41 +1,79 @@
-Personal portfolio of Charles Cahilig, built with Next.js.
+# Charles Cahilig — Portfolio
 
-- Live: https://portfolio-theta-indol-84.vercel.app
-- GitHub: https://github.com/ShadaTaran/portfolio
+Personal portfolio of Charles Cahilig, a software developer based in the
+Philippines. It presents selected projects as written case studies, along with
+experience, skills, and contact details.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- **Live site:** https://portfolio-theta-indol-84.vercel.app
+- **Source:** https://github.com/ShadaTaran/portfolio
 
-## Getting Started
+## What's in the site
 
-First, run the development server:
+- **Home** (`/`): introduction, selected work, experience, about and
+  education, skills, and contact links.
+- **Case studies**
+  - `/projects/markly`: Markly, a universal personal library (live beta)
+  - `/projects/mansar-trucking-system`: Mansar Trucking V2, a full-stack
+    trucking operations platform (in development)
+- Light and dark themes that follow the system setting, a skip link, visible
+  focus styles, and reduced-motion support.
+- Page metadata, an Open Graph image, `sitemap.xml`, and `robots.txt`,
+  generated with the App Router metadata conventions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Project descriptions are checked against each project's own repository.
+Internship work is described at a high level only, because its codebase is
+private.
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org/) (App Router) with React 19
+- TypeScript in strict mode
+- Tailwind CSS 4
+- [next-themes](https://github.com/pacocoursey/next-themes) for theme switching
+- [Lucide](https://lucide.dev/) icons
+- ESLint 9 with `eslint-config-next`
+
+The site has no database, CMS, or backend service. All content is typed,
+local data in the repository.
+
+## Project structure
+
+```
+src/
+  app/          routes, root layout, and metadata routes (sitemap, robots, OG image, icon)
+  components/   page sections, layout primitives, and case-study components
+  data/         typed portfolio content: project summaries and case studies
+  lib/          site constants, navigation items, and small helpers
+  types/        content types
+public/         project images
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To update project content, edit `src/data/projects.ts` (home page entries)
+and `src/data/project-case-studies.ts` (case-study pages).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Requirements: Node.js 20.9 or later (the minimum for Next.js 16) and npm.
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Then open http://localhost:3000. No environment variables are needed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint        # ESLint
+npm run typecheck   # TypeScript type check (no emit)
+npm run build       # production build
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site is hosted on [Vercel](https://vercel.com/) as a standard Next.js
+project: Vercel runs `npm run build` and serves the output. No environment
+variables are required. Fonts are downloaded from Google Fonts during the
+build by `next/font` and then served with the site, so the live site makes no
+third-party font requests.

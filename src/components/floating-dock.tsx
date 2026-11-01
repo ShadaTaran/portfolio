@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import {
-  internalNavItems,
-  externalNavItems,
-  resumeNavItem,
-} from "@/lib/nav-items";
+import { internalNavItems, externalNavItems } from "@/lib/nav-items";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 type FloatingDockProps = {
@@ -13,7 +9,7 @@ type FloatingDockProps = {
   inert?: boolean;
 };
 
-const dockActionItems = [resumeNavItem, ...externalNavItems];
+const dockActionItems = externalNavItems;
 
 const dockButtonClassName =
   "flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-md text-muted-foreground transition-[transform,color,background-color] duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:-translate-y-[3px] hover:scale-[1.14] hover:bg-foreground/[0.06] hover:text-foreground focus-visible:-translate-y-[3px] focus-visible:scale-[1.14]";

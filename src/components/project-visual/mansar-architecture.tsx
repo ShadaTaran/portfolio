@@ -1,14 +1,12 @@
 import { ChevronDown } from "lucide-react";
 
-type FlowStep = { label: string; detail: string | null };
+type FlowNode = { label: string; detail: string };
 
-function FlowBox({ label, detail }: FlowStep) {
+function FlowBox({ label, detail }: FlowNode) {
   return (
     <div className="w-full rounded-md border border-border px-4 py-3 text-center">
       <p className="text-sm font-medium text-foreground">{label}</p>
-      {detail ? (
-        <p className="mt-1 text-xs text-muted-foreground">{detail}</p>
-      ) : null}
+      <p className="mt-1 text-xs text-muted-foreground">{detail}</p>
     </div>
   );
 }
@@ -23,55 +21,47 @@ function Connector() {
   );
 }
 
-const locationFlow: FlowStep[] = [
-  { label: "Driver App", detail: "React Native" },
-  { label: "Firebase Realtime Database", detail: null },
-  { label: "Admin Dashboard / Leaflet", detail: "Current location display" },
+const clients: FlowNode[] = [
+  { label: "Admin web app", detail: "Next.js · BFF with HttpOnly cookies" },
+  { label: "Driver app", detail: "React Native · Android" },
 ];
 
-const businessFlow: FlowStep[] = [
-  { label: "Admin Dashboard", detail: "PHP / Bootstrap" },
-  { label: "PHP / MySQL", detail: "Drivers · Trips · Maintenance · Expenses" },
+const api: FlowNode = {
+  label: "NestJS API",
+  detail: "REST · admin and driver roles",
+};
+
+const stores: FlowNode[] = [
+  { label: "PostgreSQL", detail: "Prisma · constraints enforce trip rules" },
+  { label: "Private object storage", detail: "Receipts · presigned uploads" },
 ];
 
 export function MansarArchitecture() {
   return (
     <figure className="@container rounded-md border border-border bg-surface-elevated p-6 transition-colors duration-300 group-hover/visual:border-foreground/20 sm:p-8">
-      <div className="flex flex-col gap-8 @lg:flex-row @lg:gap-6">
-        <div className="flex flex-1 flex-col items-center">
-          <p className="mb-4 self-start text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-            Location
-          </p>
-          {locationFlow.map((step, index) => (
-            <div key={step.label} className="flex w-full flex-col items-center">
-              <FlowBox {...step} />
-              {index < locationFlow.length - 1 ? <Connector /> : null}
-            </div>
+      <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+        System overview
+      </p>
+      <div className="flex flex-col items-center">
+        <div className="grid w-full grid-cols-1 gap-2 @sm:grid-cols-2">
+          {clients.map((node) => (
+            <FlowBox key={node.label} {...node} />
           ))}
         </div>
-
-        <div
-          aria-hidden="true"
-          className="hidden w-px self-stretch bg-border @lg:block"
-        />
-        <div aria-hidden="true" className="h-px w-full bg-border @lg:hidden" />
-
-        <div className="flex flex-1 flex-col items-center">
-          <p className="mb-4 self-start text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-            Business data
-          </p>
-          {businessFlow.map((step, index) => (
-            <div key={step.label} className="flex w-full flex-col items-center">
-              <FlowBox {...step} />
-              {index < businessFlow.length - 1 ? <Connector /> : null}
-            </div>
+        <Connector />
+        <FlowBox {...api} />
+        <Connector />
+        <div className="grid w-full grid-cols-1 gap-2 @sm:grid-cols-2">
+          {stores.map((node) => (
+            <FlowBox key={node.label} {...node} />
           ))}
         </div>
       </div>
       <figcaption className="sr-only">
-        Driver location state is stored separately in Firebase while
-        operational business records are managed through the PHP/MySQL side
-        of the system.
+        The Next.js admin web app, through its Backend-for-Frontend, and the
+        React Native driver app both call the NestJS API. The API stores
+        records in PostgreSQL through Prisma and authorizes direct receipt
+        uploads to private object storage.
       </figcaption>
     </figure>
   );

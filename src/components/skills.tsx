@@ -2,22 +2,47 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 
+// Only tools with evidence in the projects and experience on this site.
 const skillGroups = [
-  { category: "Languages", items: ["TypeScript", "JavaScript", "PHP", "SQL"] },
+  {
+    category: "Languages",
+    items: ["TypeScript", "JavaScript", "SQL", "PHP", "Kotlin"],
+  },
   {
     category: "Frontend",
     items: ["React", "Next.js", "Tailwind CSS", "shadcn/ui"],
   },
   {
     category: "Backend & APIs",
-    items: ["Next.js API Routes", "REST APIs", "BFF Architecture", "PHP"],
+    items: [
+      "NestJS",
+      "Next.js Route Handlers",
+      "REST APIs",
+      "Backend-for-Frontend (BFF)",
+    ],
   },
   {
     category: "Data",
-    items: ["PostgreSQL", "MySQL", "Microsoft SQL Server", "Firebase"],
+    items: [
+      "PostgreSQL",
+      "Prisma",
+      "Supabase",
+      "MySQL",
+      "Firebase Realtime Database",
+    ],
   },
-  { category: "Mobile", items: ["React Native"] },
-  { category: "Tools", items: ["Git", "GitHub", "Postman", "Vercel"] },
+  {
+    category: "Mobile",
+    items: ["React Native", "Android native modules (Kotlin)"],
+  },
+  {
+    category: "Testing & CI",
+    items: ["Vitest", "Jest", "Testing Library", "GitHub Actions"],
+  },
+  {
+    category: "Tools",
+    items: ["Git", "GitHub", "Vercel", "Railway", "Postman"],
+  },
 ];
 
 export function Skills() {

@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from "@/lib/site";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export function Contact() {
   return (
@@ -48,17 +48,10 @@ export function Contact() {
               github
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
-            <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Charles Cahilig's resume"
-              className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
-            >
-              resume
-              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
           </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Resume available on request.
+          </p>
         </div>
       </Container>
     </Section>

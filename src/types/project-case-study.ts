@@ -13,6 +13,7 @@ export type ProjectCaseStudy = {
   summary: string;
   role: string;
   context: string;
+  status: string;
   technologies: string[];
   liveUrl?: string;
   repositoryUrl?: string;

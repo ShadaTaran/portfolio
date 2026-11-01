@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from "@/lib/site";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -62,15 +62,6 @@ export function Hero() {
             className="hero-animate flex flex-wrap items-center gap-x-5 gap-y-3 pt-1 text-sm text-muted-foreground"
             style={{ animationDelay: "calc(var(--motion-stagger) * 2)" }}
           >
-            <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-4 py-2 font-medium text-background transition-[opacity,transform] duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:opacity-85 active:scale-[0.98]"
-            >
-              Resume
-              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </a>
             <a
               href="#projects"
               className="inline-flex items-center gap-1 transition-colors hover:text-foreground"

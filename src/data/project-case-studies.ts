@@ -7,8 +7,9 @@ export const markly: ProjectCaseStudy = {
   subtitle: "Universal Personal Library",
   summary:
     "A personal library for tracking websites, anime, manga, novels, games, movies, and series — built around one goal: never lose your place again.",
-  role: "Personal Project / Software Developer",
-  context: "Personal Project",
+  role: "Project owner and developer",
+  context: "Personal project",
+  status: "Live beta",
   technologies: [
     "Next.js",
     "React",
@@ -34,6 +35,13 @@ export const markly: ProjectCaseStudy = {
         "Markly is a personal library for tracking what you're reading, watching, or playing — anime, manga, novels, movies, series, games, and bookmarked websites — in one place instead of scattered across separate apps and sites.",
         "The goal is narrow and specific: preserve both the work itself and where you left off in it, so coming back to something after a break costs nothing more than opening Markly. Alongside the web app, a browser extension and an installable PWA extend that tracking beyond whatever page happens to be open.",
       ],
+    },
+    {
+      title: "My role",
+      items: [
+        "Markly is my personal project. I'm responsible for its product scope, architecture decisions, and delivery across the whole codebase: the data model, the Supabase schema and its row-level security policies, the Next.js web app and its API routes, the Manifest V3 browser extension, the installable PWA and share-target flow, and the AniList integration.",
+      ],
+      narrow: true,
     },
     {
       title: "From bookmarks to a universal library",
@@ -109,87 +117,9 @@ export const markly: ProjectCaseStudy = {
     {
       title: "Current state",
       items: [
-        "Markly is deployed and live. Authentication and cloud persistence run on Supabase, with every table scoped to its owner at the database level through row-level security, rather than relying on the client to filter correctly.",
+        "Markly is live as a beta. Accounts and cloud persistence run on Supabase, with every table scoped to its owner at the database level through row-level security, rather than relying on the client to filter correctly. It also works without an account: in local mode, the library stays in the browser until the user chooses to sync it.",
         "All seven content types are supported end to end, including catalog search, manual entry, and progress tracking across multiple tracking sources per item, governed by the conservative linking rules described above. Duplicate detection and explicit merge are both covered by a short undo window, and AniList synchronization supports both inbound and outbound changes, though outbound writes are disabled by default and require explicit user approval.",
-        "Beyond the web app, a browser extension and an installable PWA extend tracking into share-target capture from other apps. Backup and restore, Smart Views alongside manually organized Collections, and full account deletion round out the current feature set.",
-      ],
-    },
-  ],
-};
-
-export const bouvetQueueingSystem: ProjectCaseStudy = {
-  slug: "bouvet-queueing-system",
-  number: "02",
-  title: "Bouvet Queueing System",
-  subtitle: "Software Development Internship Project",
-  summary:
-    "A queue administration and operations system developed during a software development internship, including authentication, user and department management, queue configuration, search, pagination, validation, and REST API integration.",
-  role: "Software Developer Intern",
-  context: "Software Development Internship Project",
-  technologies: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "shadcn/ui",
-    "REST APIs",
-    "MSSQL",
-  ],
-  sections: [
-    {
-      title: "Overview",
-      items: [
-        "Bouvet Queueing System is a queue administration platform built during a software development internship. The system already existed as an ongoing project when the internship began — the work centered on the frontend admin interface and its integration with an existing backend, rather than architecting the system from scratch.",
-        "Responsibilities centered on building and maintaining administrative screens — user management, department management, and queue purpose configuration — and making sure those screens correctly read from and wrote to an external REST API backed by Microsoft SQL Server.",
-      ],
-    },
-    {
-      title: "Contributing to an existing administration system",
-      items: [
-        "The project was already underway internally, with its own backend, data model, and API conventions already in place. Working inside that context meant matching existing patterns — request shapes, response handling, and UI conventions the rest of the codebase already used — rather than making independent architectural decisions.",
-        "That constraint shaped the work: most tasks involved extending or correcting behavior within an existing Next.js App Router structure, using the stack the project had already settled on — Next.js, React, TypeScript, Tailwind CSS, and shadcn/ui for the interface layer.",
-      ],
-      narrow: true,
-    },
-    {
-      title: "Building management workflows",
-      items: [
-        "Administrative work centered on a handful of representative modules: user accounts, departments, and queue purpose assignment. Each followed a similar shape — a paginated, searchable list view, with add/edit dialogs backed by form validation before any request reached the API.",
-        "User management combined a paginated list with debounced search, add/edit dialogs, and status/role handling, with each edit ultimately resolving to a PATCH request against the upstream API. Purpose assignment applied the same pattern to a more relational structure: assigning a queue purpose to a caller meant reconciling identifiers for guest type, department, and staff member into the shape the API actually expected, rather than the shape most convenient for the form.",
-      ],
-      narrow: true,
-    },
-    {
-      title: "Integrating through a Backend-for-Frontend",
-      items: [
-        "The frontend never called the external REST API directly. Every request went through a Backend-for-Frontend layer implemented as Next.js API routes, sitting between the browser and the MSSQL-backed upstream service. A login request, for example, posted to the app's own /api/auth/login-admin route, which in turn called the upstream /auth/login-admin endpoint and received back a username, role, and token.",
-        "Browser-facing requests were routed through these Next.js API routes before reaching the upstream REST API. That BFF layer handled the parts of the request/response cycle that don't belong in browser code: storing the returned token in an HttpOnly cookie rather than exposing it to client-side JavaScript, and exposing a separate, readable cookie carrying only the non-sensitive identity information the UI needed to render correctly.",
-      ],
-      narrow: true,
-    },
-    {
-      title: "Keeping UI state aligned with API contracts",
-      items: [
-        "Because the API was already defined by an existing backend, much of the integration work was about mapping — making sure form state, list state, and the payloads the API expected stayed in sync. Forms used react-hook-form with zod validation, so invalid input was caught before a request was even built, not just handled as a server error afterward.",
-        "That mapping work mattered more than it might first appear: the API's own field names and structures didn't always line up neatly with how a form modeled the same data, so a meaningful part of the work was translating between the two consistently in both directions — building a valid request payload, and correctly interpreting whatever the API sent back.",
-      ],
-      narrow: true,
-    },
-    {
-      title: "Debugging integration issues",
-      items: [
-        "Login responses weren't always shaped the way the client expected — a fallback path was needed so a malformed or unexpected JSON body from the upstream login endpoint didn't crash the login flow outright, and instead surfaced a clear error to the user.",
-        "Invalid credentials initially produced a generic failure message; distinguishing that case from other request failures meant reading the upstream error response specifically, so a wrong username or password produced an actual, specific message instead of a blanket error.",
-        "The user list could render empty on initial load, which required the client to handle the API's initial response state correctly before deciding that no user records were available.",
-      ],
-      variant: "list",
-      narrow: false,
-    },
-    {
-      title: "Current state",
-      items: [
-        "By the end of the internship, the admin application supported authenticated access, user and department management, queue purpose assignment, and queue/display configuration, all integrated against the existing MSSQL-backed REST API through the BFF layer described above.",
-        "Working against an already-defined REST API made response contracts, payload mapping, and error states matter as much as the interface itself — validating and shaping data correctly before and after each request was as much a part of the job as building the screens that triggered it.",
+        "Beyond the web app, a browser extension and an installable PWA extend tracking into share-target capture from other apps. Backup and restore, Smart Views alongside manually organized Collections, optional push reminders (off by default), and full account deletion round out the current feature set.",
       ],
     },
   ],
@@ -197,72 +127,112 @@ export const bouvetQueueingSystem: ProjectCaseStudy = {
 
 export const mansarTruckingSystem: ProjectCaseStudy = {
   slug: "mansar-trucking-system",
-  number: "03",
-  title: "Mansar Trucking Management System",
-  subtitle: "Capstone Project",
+  number: "02",
+  title: "Mansar Trucking V2",
+  subtitle: "Full-Stack Trucking Operations Platform",
   summary:
-    "A mobile and web fleet-management system for coordinating drivers, trips, maintenance, expenses, and GPS-based location tracking.",
-  role: "Software Developer / Capstone Developer",
-  context: "Capstone Project",
+    "A ground-up TypeScript rebuild of my academic capstone: a NestJS API, a Next.js admin web app, and a React Native driver app for managing drivers, vehicles, trips, expenses, receipts, maintenance, and active-trip location tracking.",
+  role: "Project owner and developer",
+  context: "Rebuild of an academic capstone project",
+  status: "In development — verified on staging, not in production",
   technologies: [
-    "React Native CLI",
-    "PHP",
-    "MySQL",
-    "Firebase Realtime Database",
-    "Leaflet",
+    "TypeScript",
+    "NestJS",
+    "PostgreSQL",
+    "Prisma",
+    "Next.js",
+    "React Native",
+    "Kotlin",
+    "Vitest",
+    "Jest",
+    "GitHub Actions",
+  ],
+  repositoryUrl: "https://github.com/ShadaTaran/mansar-trucking-v2",
+  tldr: [
+    "A complete rewrite rather than a migration: one TypeScript monorepo with a NestJS API, a Next.js admin web app, a React Native driver app, and shared packages for domain types and the API client.",
+    "Scheduling rules are enforced by PostgreSQL itself — exclusion constraints reject overlapping trips for the same driver or vehicle, and partial unique indexes allow only one in-progress trip per driver and per vehicle.",
+    "Browser JavaScript never sees an auth token: the admin web app keeps tokens in HttpOnly cookies behind a Next.js Backend-for-Frontend, and the driver app keeps its refresh token in Android Keystore-backed storage.",
+    "Driver location is captured only during an in-progress trip, queued durably on the device while offline, and ingested idempotently with both device and server timestamps.",
+    "Every workspace has automated tests, and GitHub Actions runs typecheck, lint, tests, build, and formatting checks; the staging environment deploys only after CI passes.",
   ],
   sections: [
     {
       title: "Overview",
       items: [
-        "Mansar Trucking Management System is a mobile and web system built as a capstone project around a real trucking business's own operations — coordinating drivers, trips, maintenance, and expenses, with GPS-based location tracking connecting the two ends.",
-        "The system pairs a React Native mobile app for drivers with a PHP/MySQL web backend and admin dashboard, using Firebase Realtime Database as a separate channel for current location state.",
+        "Mansar Trucking V2 manages the day-to-day records of a trucking operation: drivers and vehicles, trips from scheduling to closure, driver expenses and receipts, vehicle maintenance, and location tracking during active trips. Admins work in a web application; drivers use an Android app.",
+        "It's still in development. The features described below are built and have been verified against a staging environment, but the system isn't deployed to production and isn't in live business use. Everything public — tests, seed data, screenshots — uses synthetic data only.",
       ],
     },
     {
-      title: "Modeling the trucking workflow",
+      title: "My role",
       items: [
-        "The system followed an existing business process rather than a generic CRUD dashboard invented for the project: an admin issues a trip ticket, a driver carries it out, receipts and records come back once the trip is complete, and the admin encodes that into a trip report. The software was built to support each of those steps, not to redesign the underlying workflow.",
-        "Driver, trip, maintenance, and expense records were managed through the same relational business-data layer, keeping the operational records in one structured backend rather than splitting each workflow into a separate system.",
-      ],
-      narrow: true,
-    },
-    {
-      title: "From dedicated GPS hardware to mobile GPS",
-      items: [
-        "The project's location-tracking approach changed over its development. An earlier direction explored a dedicated IoT/GPS hardware unit carried in the vehicle, rather than relying on the driver's phone. That approach was set aside — not because it failed outright, but because building and maintaining a reliable custom hardware stack was outside the project's practical scope and the team's hardware expertise.",
-        "The final direction used the driver's own mobile device for location instead: a React Native app publishing GPS-based location data to the cloud. That traded a more specialized, hardware-dependent design for one the team could actually implement and test reliably within the project's scope — a smaller, more practical system rather than a more impressive one on paper.",
+        "V2 is my personal rebuild of the capstone. I'm responsible for its architecture decisions, which are recorded as architecture decision records in the repository, and for delivering the API, the admin web app, the driver mobile app and its native Android modules, the database schema and migrations, the automated tests, the CI pipeline, and the staging deployment.",
       ],
       narrow: true,
     },
     {
-      title: "Splitting business data from location data",
+      title: "From capstone to V2",
       items: [
-        "Business-domain data — drivers, trips, maintenance, and expenses — lives in MySQL, structured and relational, which fits records that don't change from moment to moment. Current driver location is a different kind of data: it changes throughout a trip and mostly matters as a current snapshot, not as history. That went into Firebase Realtime Database instead, kept deliberately separate from the MySQL schema.",
-        "Keeping location state separate meant the dashboard could retrieve current driver-location data from Firebase for map display without treating those updates as ordinary relational trip records. The cost is that the application has to coordinate two separate datastores instead of one — a tradeoff made deliberately, not a consequence of lacking a single system that could do both.",
+        "The original Mansar Trucking Management System was my academic capstone, built as a team project: a React Native driver app, a PHP and MySQL backend with a Bootstrap admin dashboard, Firebase Realtime Database for current driver locations, and a Leaflet map. An early plan for dedicated in-vehicle GPS hardware was dropped in favor of the driver's phone, which the team could build and test reliably within the project's scope.",
+        "V2 is a complete rewrite, not an upgrade: no code from the capstone is migrated or imported. It keeps the same business domain but rebuilds it as a typed, tested system, developed feature by feature in documented stages.",
       ],
       narrow: true,
     },
     {
-      title: "Driver location tracking",
+      title: "One monorepo, clear boundaries",
       items: [
-        "The driver app publishes location periodically rather than continuously, along with when the driver was last active, so the admin side always has a recent — not necessarily instantaneous — picture of where a driver is. Location updates carry latitude and longitude, along with the general source the position came from (GPS versus a coarser cell/Wi-Fi-based estimate), giving the admin side some sense of how precise a given reading is likely to be. Location updates are also something the driver can toggle, rather than something that runs unconditionally in the background.",
+        "The repository is an npm-workspaces monorepo with three applications — a NestJS API, a Next.js admin web app, and a React Native driver app — plus shared packages for domain types and a typed API client. The shared packages are deliberately framework-independent: they can't depend on React, React Native, Next.js, NestJS, or a database client.",
+        "Both clients go through the API, which stays the authority for authentication and data. PostgreSQL, accessed through Prisma, is the database. Login identities and operational driver records are kept as separate concepts: a driver record can exist without a user account, and the two are linked rather than merged.",
       ],
       narrow: true,
     },
     {
-      title: "Admin operations and map",
+      title: "Letting the database enforce the rules",
       items: [
-        "The admin side is a PHP/Bootstrap web dashboard, with a Leaflet map displaying driver-location data stored in Firebase. Alongside the map, the dashboard supports administrative workflows for issuing trip tickets and managing trip, maintenance, and expense records — the day-to-day administrative side of the system rather than a separate reporting layer.",
+        "Trips follow a fixed state machine — draft, assigned, in progress, completed, verified, closed, or cancelled — with no backward transitions. Admins assign, verify, and close trips; drivers start and complete their own.",
+        "Scheduling conflicts aren't checked with a read-then-write in application code. Two PostgreSQL exclusion constraints make it impossible for one driver or one vehicle to hold overlapping scheduled windows, and two partial unique indexes allow at most one in-progress trip per driver and per vehicle. The API translates those database violations into specific error responses, so two concurrent requests can't both pass a check that ran a moment too early.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Authentication for two kinds of client",
+      items: [
+        "Passwords are hashed with Argon2id. Access tokens are short-lived JWTs; refresh tokens are random values that the database stores only as hashes, and every refresh rotates them. Presenting a refresh token that was already used is treated as a sign of theft: every session in that token's family is revoked and the event is audited. Login and refresh are rate limited.",
+        "The admin web app never exposes tokens to browser JavaScript. The browser talks only to the app's own Next.js routes, which act as a Backend-for-Frontend: tokens live in HttpOnly cookies, unsafe requests must pass strict origin checks, and a constrained proxy forwards API calls server-side. The driver app keeps its access token in memory only and stores its refresh token in Android Keystore-backed secure storage. Each client accepts only its own role — admins on the web, drivers on mobile.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Location tracking that survives bad connectivity",
+      items: [
+        "Location is captured only while a trip is in progress, by a native Android foreground service written in Kotlin. Samples are written to a durable on-device queue first and uploaded in the background when the network allows, so a dead zone delays data instead of losing it.",
+        "Each sample carries a client-generated id, which makes retried uploads idempotent, and records both when the device captured it and when the server received it. Because a phone's clock can't be trusted outright, a sample is accepted only within a fixed tolerance around the trip's actual start and completion times. Uploads stay open after a trip completes, so positions captured offline aren't lost just because office work moved on.",
+        "Admins see a trip's latest recorded position and its route history as a list of recorded positions. There is deliberately no fleet-wide live map: location belongs to a trip, not to a free-standing driver timeline.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Receipts in private storage",
+      items: [
+        "Drivers attach receipt images to their expenses, which admins then approve or reject. Uploads go straight from the client to a private storage bucket through a presigned POST policy that binds the exact object key, content type, and declared size, so the storage service itself rejects anything that doesn't match. The API depends on a small provider-neutral storage interface rather than a specific vendor SDK.",
+      ],
+      narrow: true,
+    },
+    {
+      title: "Testing and delivery",
+      items: [
+        "The API, the web app, and the shared packages are tested with Vitest; the mobile app with Jest and React Native Testing Library; and the native Android location code with its own unit tests. Separate API integration tests run against a real PostgreSQL test database, because the database constraints are part of the behavior being tested.",
+        "GitHub Actions runs typecheck, lint, tests, build, and formatting checks across the monorepo. A Railway staging environment — API, web app, PostgreSQL, and a private receipt bucket — deploys only after CI passes, and features such as receipts, maintenance, and location tracking were verified there end to end with synthetic data.",
       ],
       narrow: true,
     },
     {
       title: "Tradeoffs",
       items: [
-        "Using the driver's own phone for GPS instead of dedicated hardware avoided a custom hardware stack the team would have had to build and maintain, at the cost of location tracking depending on the driver's phone and app actually being active.",
-        "Splitting business data into MySQL and location data into Firebase let each datastore handle the kind of data it's actually suited for, at the cost of the application needing to coordinate two separate systems instead of one.",
-        "Periodic rather than continuous location updates kept the tracking implementation simple and practical to build within the project's scope, at the cost of the map showing a recent position rather than a truly continuous trace.",
+        "Enforcing scheduling rules with PostgreSQL constraints ties the design to PostgreSQL-specific features, in exchange for rules that hold under concurrent requests without application-level locking.",
+        "Refresh-token reuse revokes the whole session family with no grace window. A client that accidentally refreshes the same token twice signs its user out, but a stolen refresh token can't be used quietly.",
+        "Device timestamps are tolerated within a fixed bound rather than trusted, so a stored capture time is a bounded observation, not proof of exactly when a position was recorded.",
+        "A compromised-password blocklist is deferred to a later stage, so the password policy deliberately doesn't claim full NIST SP 800-63B conformance yet.",
       ],
       variant: "list",
       narrow: false,
@@ -270,8 +240,8 @@ export const mansarTruckingSystem: ProjectCaseStudy = {
     {
       title: "Current state",
       items: [
-        "The capstone implementation combined the mobile driver workflow, the business management backend, and the GPS-based admin dashboard into one working system, covering trip tickets, maintenance and expense records, and driver location tracking end to end.",
-        "The hardware-to-mobile shift was as much a part of the project as any single feature: the strongest architecture wasn't the most hardware-heavy one on paper, but the one the team could actually implement, test, and rely on within the project's real constraints.",
+        "Built so far: authentication for both clients, driver and vehicle management, the full trip lifecycle — administered on the web and carried out in the driver app — expenses with receipt uploads, vehicle maintenance records, and active-trip location tracking with route history for admins.",
+        "All of it runs on staging with synthetic data. V2 isn't deployed to production, isn't used by the business yet, and has no public demo.",
       ],
     },
   ],

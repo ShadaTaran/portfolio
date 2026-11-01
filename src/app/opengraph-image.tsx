@@ -5,7 +5,7 @@ export const alt = `${SITE_NAME} — Software Developer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Echoes the contribution-graph motif: fixed cells, varying dot diameters.
+// Decorative row of varying dot diameters; it does not represent any data.
 const DOT_SIZES = [
   6, 3, 14, 4, 20, 3, 8, 3, 3, 11, 4, 3, 26, 5, 3, 9, 3, 16, 3, 4, 6, 3, 12, 3,
   3, 22, 4, 3, 7, 3,
