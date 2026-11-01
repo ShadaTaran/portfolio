@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Geist_Pixel } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Pixel } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { AdaptiveNavigation } from "@/components/adaptive-navigation";
@@ -9,6 +9,7 @@ import {
   LINKEDIN_URL,
   SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_OPEN_GRAPH,
   SITE_TITLE,
   SITE_URL,
 } from "@/lib/site";
@@ -16,11 +17,6 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -43,20 +39,21 @@ export const metadata: Metadata = {
     template: `%s — ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    siteName: SITE_NAME,
-    url: "/",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    locale: "en_US",
-  },
+  // No canonical or og:url here: anything set on the root layout is
+  // inherited by the 404 page, which must not point at the homepage. Each
+  // public page declares its own.
+  openGraph: SITE_OPEN_GRAPH,
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
+};
+
+// viewport-fit=cover lets env(safe-area-inset-*) report real values on
+// phones with notches and home indicators; the layout pads for them.
+export const viewport: Viewport = {
+  viewportFit: "cover",
 };
 
 // Only publicly surfaced facts: the same name, role, and profile links the
@@ -75,7 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${geistPixel.variable} h-full`}
+      className={`${geistSans.variable} ${geistPixel.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground antialiased">
         <script

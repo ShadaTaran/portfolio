@@ -15,21 +15,21 @@ export function Hero() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:items-end lg:gap-16">
           <div className="flex max-w-[680px] flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="hero-animate text-label font-medium uppercase text-muted-foreground">
+              {/* The identity block renders without an entrance animation:
+                  text that starts at opacity 0 isn't counted as the page's
+                  largest paint, and it's the first thing visitors read. */}
+              <p className="text-label font-medium uppercase text-muted-foreground">
                 Software developer
               </p>
               <h1
-                className="hero-animate font-pixel text-display font-normal tracking-tight"
+                className="font-pixel text-display font-normal tracking-tight"
                 style={{ fontVariationSettings: '"ELSH" 1' }}
               >
                 Charles Cahilig
               </h1>
             </div>
 
-            <p
-              className="hero-animate max-w-xl text-title text-balance text-foreground"
-              style={{ animationDelay: "var(--motion-stagger)" }}
-            >
+            <p className="max-w-xl text-title text-balance text-foreground">
               I build full-stack TypeScript applications for the web and
               mobile, from database rules and APIs to the interfaces people
               use.
@@ -101,7 +101,6 @@ export function Hero() {
                 <li key={project.slug} className="border-b border-border">
                   <Link
                     href={`/projects/${project.slug}`}
-                    aria-label={`${project.title} case study, ${project.status}`}
                     className="group flex items-baseline gap-3 py-4"
                   >
                     <span
@@ -117,6 +116,7 @@ export function Hero() {
                       <span className="text-sm text-muted-foreground">
                         {project.status}
                       </span>
+                      <span className="sr-only"> case study</span>
                     </span>
                     <ArrowRight
                       className="h-4 w-4 shrink-0 self-center text-muted-foreground transition-[color,transform] duration-[var(--motion-fast)] ease-[var(--ease-standard)] group-hover:translate-x-0.5 group-hover:text-foreground"

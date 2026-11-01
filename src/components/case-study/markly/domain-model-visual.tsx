@@ -17,9 +17,9 @@ export function DomainModelVisual() {
         {/* Stacked on phones: three side-by-side boxes are too narrow for
             the "TrackingSource" label below the sm breakpoint. */}
         <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
-          <DiagramNode title="TrackingSource" className="px-2 py-2" />
-          <DiagramNode title="TrackingSource" className="px-2 py-2" />
-          <DiagramNode title="TrackingSource" className="px-2 py-2" />
+          <DiagramNode title="TrackingSource" compact />
+          <DiagramNode title="TrackingSource" compact />
+          <DiagramNode title="TrackingSource" compact />
         </div>
       </div>
     </DiagramPanel>

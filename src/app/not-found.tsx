@@ -8,7 +8,10 @@ export default function NotFound() {
       <Section>
         <Container>
           <div className="flex flex-col gap-4">
-            <span className="font-mono text-sm text-muted-foreground">
+            <span
+              className="font-pixel text-sm text-muted-foreground"
+              style={{ fontVariationSettings: '"ELSH" 1' }}
+            >
               404
             </span>
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">

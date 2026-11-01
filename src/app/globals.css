@@ -36,8 +36,33 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-muted: var(--accent-muted);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-pixel: var(--font-geist-pixel);
+}
+
+/*
+ * Horizontal page gutter. It never drops below the design gutter, and grows
+ * to clear a notch or rounded corner on phones held in landscape (the
+ * viewport uses viewport-fit=cover, so env() reports the real insets).
+ */
+:root {
+  --page-gutter: 1.5rem;
+}
+
+@media (width >= 40rem) {
+  :root {
+    --page-gutter: 2rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --page-gutter: 3rem;
+  }
+}
+
+@utility px-page {
+  padding-left: max(var(--page-gutter), env(safe-area-inset-left));
+  padding-right: max(var(--page-gutter), env(safe-area-inset-right));
 }
 
 /*

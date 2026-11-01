@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
@@ -6,6 +7,12 @@ import { SelectedWork } from "@/components/selected-work";
 import { Experience } from "@/components/experience";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
+import { SITE_OPEN_GRAPH } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { ...SITE_OPEN_GRAPH, url: "/" },
+};
 
 export default function Home() {
   return (

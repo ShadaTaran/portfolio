@@ -29,16 +29,22 @@ export function DiagramPanel({
 export function DiagramNode({
   title,
   detail,
+  compact = false,
   className,
 }: {
   title: string;
   detail?: string;
+  /** Tighter padding for nodes laid out several to a row. A prop rather than
+   * a className override, because `cn` doesn't resolve conflicting
+   * utilities and the base padding would otherwise win. */
+  compact?: boolean;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "rounded-md border border-border px-4 py-3 text-center",
+        "rounded-md border border-border text-center",
+        compact ? "px-2 py-2" : "px-4 py-3",
         className
       )}
     >
