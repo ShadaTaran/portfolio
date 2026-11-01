@@ -15,11 +15,9 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={cn("flex flex-col gap-3", className)}>
-      <Tag className="text-[1.375rem] font-semibold tracking-tight sm:text-[1.75rem]">
-        {title}
-      </Tag>
+      <Tag className="text-heading font-semibold tracking-tight">{title}</Tag>
       {description ? (
-        <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">
+        <p className="max-w-2xl text-lead text-muted-foreground">
           {description}
         </p>
       ) : null}

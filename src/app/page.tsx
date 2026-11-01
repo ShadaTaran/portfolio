@@ -17,7 +17,7 @@ export default function Home() {
         <Container>
           <SectionHeading as="h2" title="about" />
           <div className="mt-8 grid gap-4 border-t border-border pt-8 text-muted-foreground lg:grid-cols-2 lg:gap-10">
-            <p className="text-[17px] sm:text-[19px]">
+            <p className="text-lead">
               I&apos;m a software developer based in the Philippines, with a
               BS in Information Technology majoring in Software Development.
             </p>

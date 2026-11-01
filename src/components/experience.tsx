@@ -13,13 +13,13 @@ const bullets = [
 
 export function Experience() {
   return (
-    <Section id="experience" spacing="compact">
+    <Section id="experience">
       <Container>
         <SectionHeading as="h2" title="experience" />
         <div className="mt-8 flex flex-col gap-4 border-t border-border pt-8 lg:grid lg:grid-cols-[220px_1fr] lg:items-start lg:gap-10">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between lg:flex-col lg:gap-1">
             <div>
-              <h3 className="text-[1.1875rem] font-semibold tracking-tight sm:text-[1.375rem]">
+              <h3 className="text-title font-semibold tracking-tight">
                 Software Development Internship
               </h3>
               <p className="text-sm text-muted-foreground">

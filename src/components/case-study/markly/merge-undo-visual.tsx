@@ -31,12 +31,12 @@ export function MergeUndoVisual() {
           <div className="flex flex-col items-center gap-1.5 rounded-md border border-foreground/25 px-3 py-3 text-center">
             <Check className="h-4 w-4 text-foreground" aria-hidden="true" strokeWidth={1.75} />
             <p className="text-xs font-medium text-foreground">Snapshot matches</p>
-            <p className="text-[11px] text-muted-foreground">Undo restores</p>
+            <p className="text-xs text-muted-foreground">Undo restores</p>
           </div>
           <div className="flex flex-col items-center gap-1.5 rounded-md border border-border px-3 py-3 text-center">
             <X className="h-4 w-4 text-muted-foreground" aria-hidden="true" strokeWidth={1.75} />
             <p className="text-xs font-medium text-foreground">State changed since</p>
-            <p className="text-[11px] text-muted-foreground">Undo blocked, conflict surfaced</p>
+            <p className="text-xs text-muted-foreground">Undo blocked, conflict surfaced</p>
           </div>
         </div>
       </div>

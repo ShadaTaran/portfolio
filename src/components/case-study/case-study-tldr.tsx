@@ -5,7 +5,7 @@ export function CaseStudyTldr({ items }: { items: string[] }) {
   return (
     <Section spacing="compact" className="border-t border-border">
       <Container>
-        <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+        <p className="text-label font-medium uppercase text-muted-foreground">
           At a glance
         </p>
         <ul className="mt-5 grid grid-cols-1 gap-x-10 gap-y-4 border-t border-border pt-6 sm:grid-cols-2">

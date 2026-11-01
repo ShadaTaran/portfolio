@@ -39,10 +39,10 @@ const stores: FlowNode[] = [
 export function MansarArchitecture() {
   return (
     <figure className="@container rounded-md border border-border bg-surface-elevated p-6 transition-colors duration-300 group-hover/visual:border-foreground/20 sm:p-8">
-      <p className="mb-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+      <p className="mb-4 text-label font-medium uppercase text-muted-foreground">
         System overview
       </p>
-      <div className="flex flex-col items-center">
+      <div className="mx-auto flex max-w-2xl flex-col items-center">
         <div className="grid w-full grid-cols-1 gap-2 @sm:grid-cols-2">
           {clients.map((node) => (
             <FlowBox key={node.label} {...node} />

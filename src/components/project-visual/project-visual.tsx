@@ -3,10 +3,12 @@ import { MansarArchitecture } from "@/components/project-visual/mansar-architect
 
 type ProjectVisualProps = {
   variant: string;
+  /** Rendered width hint for screenshots, passed to the image `sizes`. */
+  sizes: string;
 };
 
-export function ProjectVisual({ variant }: ProjectVisualProps) {
-  if (variant === "markly") return <MarklyMedia />;
+export function ProjectVisual({ variant, sizes }: ProjectVisualProps) {
+  if (variant === "markly") return <MarklyMedia sizes={sizes} />;
   if (variant === "mansar-trucking-system") return <MansarArchitecture />;
   return null;
 }

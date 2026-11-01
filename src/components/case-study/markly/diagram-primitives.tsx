@@ -14,7 +14,7 @@ export function DiagramPanel({
 }) {
   return (
     <figure className="rounded-md border border-border bg-surface-elevated p-6 sm:p-8">
-      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+      <p className="text-label font-medium uppercase text-muted-foreground">
         {eyebrow}
       </p>
       <div className="mt-5">{children}</div>
@@ -60,7 +60,7 @@ export function DiagramConnector({ label }: { label?: string }) {
       />
       <span className="h-3 w-px bg-border" />
       {label ? (
-        <span className="mt-1 text-[10px] uppercase tracking-wide text-muted-foreground">
+        <span className="mt-1 text-label uppercase text-muted-foreground">
           {label}
         </span>
       ) : null}

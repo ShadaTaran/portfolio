@@ -11,7 +11,7 @@ export function ProjectLinks({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
   return (
     <Section spacing="compact" className="border-t border-border">
       <Container>
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h2 className="text-heading font-semibold tracking-tight">
           project links
         </h2>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
@@ -20,7 +20,7 @@ export function ProjectLinks({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
               href={caseStudy.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${caseStudy.title} — live site`}
+              aria-label={`${caseStudy.title} — live site (opens in a new tab)`}
               className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
               live
@@ -32,7 +32,7 @@ export function ProjectLinks({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
               href={caseStudy.repositoryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${caseStudy.title} — GitHub repository`}
+              aria-label={`${caseStudy.title} — GitHub repository (opens in a new tab)`}
               className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
               github

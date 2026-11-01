@@ -11,18 +11,20 @@ export function Contact() {
         <SectionHeading
           as="h2"
           title="get in touch"
-          description="I'm currently open to entry-level Software Developer and Software Engineer opportunities. If you have a role or project that may be a fit, feel free to reach out."
+          description="I'm open to junior software engineer, frontend, and full-stack roles. If you have a role or project that may be a fit, feel free to reach out."
         />
         <div className="mt-8 border-t border-border pt-8">
           <a
             href={`mailto:${EMAIL}`}
             aria-label={`Email Charles Cahilig at ${EMAIL}`}
-            className="group/link inline-flex max-w-full flex-wrap items-baseline gap-2 font-semibold tracking-tight break-words text-balance transition-opacity duration-200 hover:opacity-80"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}
+            className="group/link inline-flex max-w-full flex-wrap items-baseline gap-2 font-semibold tracking-tight transition-opacity duration-200 hover:opacity-80"
+            // Sized so the full address fits on one line from 360px up; it
+            // may still wrap (rather than overflow) at narrower or zoomed widths.
+            style={{ fontSize: "clamp(1.375rem, 0.5rem + 3.9vw, 3rem)" }}
           >
-            {EMAIL}
+            <span className="min-w-0 [overflow-wrap:anywhere]">{EMAIL}</span>
             <ArrowUpRight
-              className="h-5 w-5 shrink-0 transition-transform duration-[var(--motion-fast)] ease-[var(--ease-standard)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              className="hidden h-5 w-5 shrink-0 transition-transform duration-[var(--motion-fast)] ease-[var(--ease-standard)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 sm:block"
               aria-hidden="true"
             />
           </a>
@@ -32,7 +34,7 @@ export function Contact() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Charles Cahilig on LinkedIn"
+              aria-label="Charles Cahilig on LinkedIn (opens in a new tab)"
               className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
               linkedin
@@ -42,7 +44,7 @@ export function Contact() {
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Charles Cahilig on GitHub"
+              aria-label="Charles Cahilig on GitHub (opens in a new tab)"
               className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
               github

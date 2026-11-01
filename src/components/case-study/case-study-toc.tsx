@@ -6,7 +6,7 @@ export function CaseStudyToc({ entries }: { entries: TocEntry[] }) {
       aria-label="Table of contents"
       className="hidden lg:sticky lg:top-24 lg:block lg:self-start"
     >
-      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+      <p className="text-label font-medium uppercase text-muted-foreground">
         On this page
       </p>
       <ul className="mt-4 flex flex-col gap-3 border-l border-border pl-4">

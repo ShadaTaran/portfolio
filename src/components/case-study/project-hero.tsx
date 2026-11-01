@@ -28,7 +28,7 @@ export function ProjectHero({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
           </h1>
           <p className="text-lg text-muted-foreground">{caseStudy.subtitle}</p>
         </div>
-        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
+        <p className="mt-6 max-w-2xl text-lead text-muted-foreground">
           {caseStudy.summary}
         </p>
         <ProjectMeta caseStudy={caseStudy} />
@@ -39,7 +39,7 @@ export function ProjectHero({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
                 href={caseStudy.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${caseStudy.title} — live site`}
+                aria-label={`${caseStudy.title} — live site (opens in a new tab)`}
                 className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
               >
                 live
@@ -51,7 +51,7 @@ export function ProjectHero({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
                 href={caseStudy.repositoryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${caseStudy.title} — GitHub repository`}
+                aria-label={`${caseStudy.title} — GitHub repository (opens in a new tab)`}
                 className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-muted-foreground"
               >
                 github
@@ -61,7 +61,10 @@ export function ProjectHero({ caseStudy }: { caseStudy: ProjectCaseStudy }) {
           </div>
         ) : null}
         <div className="mt-10">
-          <ProjectVisual variant={caseStudy.slug} />
+          <ProjectVisual
+            variant={caseStudy.slug}
+            sizes="(min-width: 1160px) 1040px, calc(100vw - 64px)"
+          />
         </div>
       </Container>
     </Section>

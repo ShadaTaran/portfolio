@@ -18,17 +18,12 @@ function useMounted() {
 const REVEAL_DURATION_MS = 500;
 const REVEAL_EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
 
-type ThemeToggleProps = {
-  variant?: "header" | "dock";
-};
+const buttonClassName =
+  "flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground";
 
-export function ThemeToggle({ variant = "header" }: ThemeToggleProps) {
+export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
-
-  const buttonSize =
-    variant === "dock" ? "h-10 w-10 sm:h-11 sm:w-11" : "h-10 w-10";
-  const iconSize = variant === "dock" ? "h-5 w-5" : "h-4 w-4";
 
   if (!mounted) {
     return (
@@ -36,7 +31,7 @@ export function ThemeToggle({ variant = "header" }: ThemeToggleProps) {
         type="button"
         aria-label="Toggle theme"
         disabled
-        className={`flex ${buttonSize} items-center justify-center rounded-md text-muted-foreground`}
+        className={buttonClassName}
       />
     );
   }
@@ -104,40 +99,18 @@ export function ThemeToggle({ variant = "header" }: ThemeToggleProps) {
       });
   }
 
-  const label = isDark ? "Switch to light mode" : "Switch to dark mode";
-  const magnifyClassName =
-    variant === "dock"
-      ? "hover:-translate-y-1 hover:scale-[1.14] focus-visible:-translate-y-1 focus-visible:scale-[1.14]"
-      : "";
-
-  const button = (
+  return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={label}
-      className={`flex ${buttonSize} items-center justify-center rounded-md text-muted-foreground transition-colors duration-150 hover:bg-foreground/5 hover:text-foreground ${magnifyClassName}`}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className={`${buttonClassName} transition-colors duration-150 hover:bg-foreground/5 hover:text-foreground`}
     >
       {isDark ? (
-        <Sun className={iconSize} aria-hidden="true" />
+        <Sun className="h-4 w-4" aria-hidden="true" />
       ) : (
-        <Moon className={iconSize} aria-hidden="true" />
+        <Moon className="h-4 w-4" aria-hidden="true" />
       )}
     </button>
-  );
-
-  if (variant !== "dock") {
-    return button;
-  }
-
-  return (
-    <div className="group relative flex flex-col items-center">
-      {button}
-      <span
-        role="tooltip"
-        className="dock-tooltip pointer-events-none absolute -top-9 left-1/2 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background"
-      >
-        {label}
-      </span>
-    </div>
   );
 }

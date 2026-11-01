@@ -9,14 +9,12 @@ export function SelectedWork() {
     <Section id="projects" className="bg-surface-secondary">
       <Container width="wide">
         <SectionHeading as="h2" title="selected work" />
-        <div className="mt-8 flex flex-col">
+        <div className="mt-8 divide-y divide-border border-t border-border">
           {projects.map((project, index) => (
             <ProjectEntry
               key={project.slug}
               project={project}
-              flagship={index === 0}
-              reverseMedia={index === 1}
-              withDivider={index > 0}
+              reverseMedia={index % 2 === 1}
             />
           ))}
         </div>

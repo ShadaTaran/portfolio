@@ -7,7 +7,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border">
       <Container>
-        <div className="flex flex-col gap-4 pt-10 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 pt-10 pb-[calc(6.5rem+env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:justify-between sm:pb-10">
           <div className="text-sm text-muted-foreground">
             <span className="font-medium text-foreground">
               Charles Cahilig
@@ -22,6 +22,7 @@ export function SiteFooter() {
               className="transition-colors hover:text-foreground"
             >
               GitHub
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a
               href={LINKEDIN_URL}
@@ -30,6 +31,7 @@ export function SiteFooter() {
               className="transition-colors hover:text-foreground"
             >
               LinkedIn
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a href="#top" className="transition-colors hover:text-foreground">
               Back to top

@@ -24,11 +24,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// next/font has no metric overrides for Geist Pixel, so it can't generate a
+// size-adjusted fallback (the source of the build warning). It's only used
+// for the name and numerals, so a plain monospace fallback is enough.
 const geistPixel = Geist_Pixel({
   variable: "--font-geist-pixel",
   weight: "variable",
   axes: ["ELSH"],
   subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "monospace"],
 });
 
 export const metadata: Metadata = {

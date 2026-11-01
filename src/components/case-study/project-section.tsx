@@ -23,7 +23,7 @@ function SectionBody({
 }: Pick<ProjectSectionProps, "index" | "title" | "items" | "variant">) {
   return (
     <>
-      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+      <h2 className="text-heading font-semibold tracking-tight">
         {index ? (
           <span className="text-muted-foreground font-normal">
             <span

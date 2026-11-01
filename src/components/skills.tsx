@@ -47,7 +47,7 @@ const skillGroups = [
 
 export function Skills() {
   return (
-    <Section id="skills" spacing="compact">
+    <Section id="skills">
       <Container width="wide">
         <SectionHeading as="h2" title="stack" />
         <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-7 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-3">
